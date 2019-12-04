@@ -166,7 +166,7 @@ class App extends React.Component {
     }
 
     // Download CSV file
-    this.downloadCSV(csv.join("n"), filename);
+    this.downloadCSV(csv.join("\n"), filename);
   }
 
   render() {
