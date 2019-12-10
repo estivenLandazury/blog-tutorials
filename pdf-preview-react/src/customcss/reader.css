@@ -2,3 +2,45 @@
      height: 1200px !important;
      width: auto!important;
  }
+ 
+ button#añadirFila {
+     margin-bottom: 1%;
+     margin-top: 1%;
+     color: #fff;
+     background-color: #4374e8;
+     border-color: #4374e8;
+ }
+ 
+ .center_Title {
+     text-align: center;
+ }
+ 
+ h1.Title_table {
+     font-size: 125%;
+     color: #4374e8;
+     font-weight: bold;
+     font-family: sans-serif;
+     margin-top: 2% !important;
+ }
+ 
+ button#digitalñFile {
+     color: #fff;
+     background-color: #4374e8;
+     border-color: #4374e8;
+ }
+ 
+ button#export {
+     color: #fff;
+     background-color: #4374e8;
+     border-color: #4374e8;
+ }
+ 
+ input#myInput {
+     margin-left: 6%;
+ }
+ 
+ .containers {
+     float: left;
+     padding-bottom: 2%;
+     margin-left: 1%;
+ }
