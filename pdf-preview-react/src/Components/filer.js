@@ -18,7 +18,7 @@ class Filer extends React.Component {
         file: null,
         numPages: 0,
         pageNumber: 1,
-        URl: "http://172.19.15.45:5000/",
+        URl: "http://172.19.15.50:5000/",
         rows: [],
         modalIsopen: false,
         open: false
