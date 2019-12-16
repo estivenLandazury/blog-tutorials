@@ -15,7 +15,6 @@ class Reader extends React.Component {
 
     componentDidMount() {
 
-
         console.log("desde REDUX " + this.props.prueba)
     }
 
@@ -23,7 +22,10 @@ class Reader extends React.Component {
 
 
 
-
+/**
+ * Metodo que permite  añadir una fila de forma dinamica a la tabla dibujada en el componente,
+ * Items: cada item seguido de la coma hace referencia a los campos de la tabla 
+ */
     handleAddRow = () => {
         const item = {
             Item: "",
@@ -55,6 +57,8 @@ class Reader extends React.Component {
 
 
     };
+
+/** Metodo que permite remover una fila de la tabla que se  */
 
     handleRemoveRow = () => {
 

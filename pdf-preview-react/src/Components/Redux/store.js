@@ -1,4 +1,9 @@
 import { createStore } from 'redux'
+
+
+/**  
+ * stateInitial: constante que hace referencia al estado global desde redux para ser utilizado en cualquier componente
+ */
 const stateInitial = {
 
 
