@@ -1,6 +1,0 @@
-package de.blog.rieckpil.avoidrepeatingattributesinjpaentities;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface ProductRepository extends JpaRepository<Product, Long> {
-}
