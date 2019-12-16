@@ -1,6 +1,8 @@
 import React from 'react';
 import '../customcss/reader.css'
 import { connect } from 'react-redux';
+import logop from './images/descarga.png';
+
 
 
 
@@ -22,10 +24,10 @@ class Reader extends React.Component {
 
 
 
-/**
- * Metodo que permite  añadir una fila de forma dinamica a la tabla dibujada en el componente,
- * Items: cada item seguido de la coma hace referencia a los campos de la tabla 
- */
+    /**
+     * Metodo que permite  añadir una fila de forma dinamica a la tabla dibujada en el componente,
+     * Items: cada item seguido de la coma hace referencia a los campos de la tabla 
+     */
     handleAddRow = () => {
         const item = {
             Item: "",
@@ -58,13 +60,19 @@ class Reader extends React.Component {
 
     };
 
-/** Metodo que permite remover una fila de la tabla que se  */
+    /** Metodo que permite remover una fila de la tabla que se  */
 
     handleRemoveRow = () => {
 
 
         this.props.eliminarFila()
     };
+
+
+    /** Metodo que permite descargar el contenido de la tabla en formatao csv
+     * @param: csv, parametro que hace referencia al formato csv que se desea descargar
+     * @param:filename, parametro que hace referencia al nombre del archivo que se descargará
+     */
 
     downloadCSV(csv, filename) {
         var csvFile;
@@ -93,7 +101,9 @@ class Reader extends React.Component {
     }
 
 
-
+    /** Metodo que obtiene la información de la tabla de forma dinámica y almacenarla en un archivo csv
+     * @param: filename, nombre del nuevo archivo que contendra la información de la tabla
+     */
     exportTableToCSV(filename) {
         var csv = [];
         var rows = document.querySelectorAll("table tr");
@@ -111,6 +121,10 @@ class Reader extends React.Component {
         this.downloadCSV(csv.join("\n"), filename);
     }
 
+
+    /**
+     * Metodo que permite realizar el filtrado de la tabla, por el campo ubicado en la posición  indicado en la iteración
+     */
 
     Filtrartabla() {
         // Declare variables
@@ -136,12 +150,37 @@ class Reader extends React.Component {
 
 
 
+
+    /**
+     * Metodo que pinta la tabla  en el DOM del navegador 
+     * 
+     */
+
+
     dibijarTabla() {
 
         return <div >
             <div className="center_Title">
 
-                <h1 className="Title_table"> Digitalización de Archivo</h1>
+
+                <div className="principal">
+
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm">
+                                <h1 className="Title_table"> Digitalización de Archivo</h1>
+                            </div>
+                            <div className="col-sm">
+                                <img src={logop} className="home-logo" alt="Logo" />
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
                 <div className="containers">
                     <div className="row">
                         <div classname="col-sm">
@@ -259,7 +298,10 @@ class Reader extends React.Component {
 
 
 
-
+/**
+ * 
+ * @param {*} state, parametro que hace referencia al estado global par ser utilizado en este componente, el state hace referencia al estado que se instanció en Redux
+ */
 const mapStateProps = state => ({
 
     prueba: state.prueba,
@@ -269,8 +311,18 @@ const mapStateProps = state => ({
 
 })
 
+/**
+ * 
+ * @param {*} dispactch este parametro hace referencia al despachador que se utiliza por cada metodo instanciado para ser manejado en Redux y cambiar el estado a lo que se requiera 
+ */
+
 const mapDispatchToProps = dispactch => ({
 
+
+    /**
+     * 
+     * @param {*} item  hace referncia al json que llega como parametro del resultado obtenido en la solicitud POS
+     */
     cambiarJson(item) {
 
         dispactch({
@@ -281,6 +333,9 @@ const mapDispatchToProps = dispactch => ({
 
     },
 
+    /**
+     * Este método pemite modificar el json que se ha obtenido al realizar la petición POS para actualizar las filas eliminadas.
+     */
 
     eliminarFila() {
 

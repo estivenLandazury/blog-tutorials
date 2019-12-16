@@ -18,12 +18,16 @@ class Filer extends React.Component {
         file: null,
         numPages: 0,
         pageNumber: 1,
-        URl: "http://172.19.15.27:5000/",
+        URl: "http://172.19.15.27:5000/", /** URL que hace refrencia a la dirección del servidor donde se realiza la petición*/
         rows: [],
         modalIsopen: false,
         open: false
 
     }
+
+    /**
+     * Este metodo permite cambiar el estado del archivo en Redux que se va a visualizar 
+     */
 
     onFileChange = (event) => {
 
@@ -41,10 +45,18 @@ class Filer extends React.Component {
 
     }
 
+    /**
+     * Metodo que permite mostrar la cantidad de paginas que posee el archivo cargado
+     */
+
     onDocumentLoadSuccess = ({ numPages }) => {
         console.log("total paginas " + numPages)
         this.setState({ numPages: numPages });
     }
+
+    /** 
+     * Método que permite cambiar de página el archivo cargado
+     */
 
     nextPage = () => {
 
@@ -64,7 +76,9 @@ class Filer extends React.Component {
 
 
 
-
+    /**
+     * Método que permite mostrar el archivo  cargado  en pantalla
+     */
 
     DrawFile() {
 
@@ -121,12 +135,12 @@ class Filer extends React.Component {
 
 
 
-
+    /**
+     * Método que permite realizar la petición del sercvicio para digitalizar el archivo cargado en el componente
+     */
 
 
     sendServer() {
-
-
 
         if (this.props.filer !== null) {
 
@@ -139,7 +153,7 @@ class Filer extends React.Component {
 
             /**that.props.habilitarTable(false)*/
 
-            /** ----------------------Fetch1 Almacena datos en servidor--------------------------- */
+            /** ----------------------Fetch1 Almacena el archivo  en servidor--------------------------- */
             fetch(that.state.URl + 'upload', {
                 method: 'POST',
                 body: data,
@@ -154,7 +168,6 @@ class Filer extends React.Component {
                         that.props.cambiarState1("success")
 
 
-                        /** ----------------------Fetch2 Almacena datos en  el bucket de S3 en AWS --------------------------- */
                         let options = {
                             method: 'POST',
                             body: JSON.stringify({ "name": that.props.nameFile }),
@@ -165,6 +178,8 @@ class Filer extends React.Component {
                             },
 
                         }
+                        /** ----------------------Fetch2 Almacena el arachivo en  el bucket de S3 en AWS --------------------------- */
+
                         fetch(that.state.URl + 'send', options)
                             .then((response) => response.json())
                             .then((responseJson) => {
@@ -218,11 +233,6 @@ class Filer extends React.Component {
 
                                         }).catch(error => console.log(error))
 
-
-
-
-
-
                                 }
 
                             }).catch(error => console.log(error))
@@ -241,14 +251,9 @@ class Filer extends React.Component {
     }
 
 
-    loader() {
-        return <div>
-            <h1 className="loader"> Loading... 25%</h1>
-            <div className="loader2"></div>
-        </div>
-    }
-
-
+/**
+ * Este metodo simula el tiempo de espera mientras se ejecuta el metedo send Server
+ */
     loaderbar() {
 
         if (this.props.state1 === "success") {
