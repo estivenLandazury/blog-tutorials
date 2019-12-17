@@ -18,7 +18,7 @@ class Filer extends React.Component {
         file: null,
         numPages: 0,
         pageNumber: 1,
-        URl: "http://172.19.15.27:5000/", /** URL que hace refrencia a la dirección del servidor donde se realiza la petición*/
+        URl: "http://172.19.15.54:5000/", /** URL que hace refrencia a la dirección del servidor donde se realiza la petición*/
         rows: [],
         modalIsopen: false,
         open: false
